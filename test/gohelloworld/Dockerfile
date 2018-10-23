@@ -1,13 +1,13 @@
 FROM golang
 
 # Copy the local package files to the container's workspace.
-ADD . /go/src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld/
+ADD . /go/src/github.com/pivotal-nader-ziada/gohelloworld/
 
 RUN pwd
 
-RUN ls src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
+RUN ls src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld/
 
-RUN go install src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
+RUN go install src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld/
 
 ENTRYPOINT /go/bin/gohelloworld
 
