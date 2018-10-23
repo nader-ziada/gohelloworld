@@ -5,7 +5,7 @@ ADD . /go/src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld/
 
 RUN pwd
 
-RUN ls github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
+RUN ls src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
 
 RUN go install src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
 
