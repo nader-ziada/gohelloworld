@@ -7,7 +7,7 @@ RUN pwd
 
 RUN ls github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
 
-RUN go install github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
+RUN go install src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
 
 ENTRYPOINT /go/bin/gohelloworld
 
