@@ -1,7 +1,7 @@
 FROM golang
 
 # Copy the local package files to the container's workspace.
-ADD . /go/src/github.com/pivotal-nader-ziada/gohelloworld/
+COPY . /go/src/github.com/pivotal-nader-ziada/gohelloworld/test/gohelloworld
 
 RUN pwd
 
