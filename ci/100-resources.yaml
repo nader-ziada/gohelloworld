@@ -1,0 +1,39 @@
+---    
+apiVersion: pipeline.knative.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: go-helloworld-git
+  namespace: default
+spec:    
+  type: git
+  params:
+  - name: revision
+    value: master
+  - name: url
+    value: https://github.com/pivotal-nader-ziada/gohelloworld
+---    
+apiVersion: pipeline.knative.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: go-helloworld-image
+  namespace: default
+spec:  
+  type: image
+  params:
+  - name: url
+    value: gcr.io/<project>/gohelloworld
+---    
+apiVersion: pipeline.knative.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: go-helloworld-test-cluster
+  namespace: default
+spec:  
+  type: cluster
+  params:
+  - name: url
+    value: https://35.190.93.250:8443    
+  - name: cadata
+    value: 
+  - name: token
+    value: 

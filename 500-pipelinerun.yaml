@@ -1,0 +1,10 @@
+apiVersion: pipeline.knative.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: gohelloworld-pipeline-run
+  namespace: default
+spec:
+  pipelineRef:
+    name: gohelloworld-pipeline
+  triggerRef:
+    type: manual
