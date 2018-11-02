@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: news
-        image: gcr.io/${MY_GCR_PROJECT}/gohelloworld:latest
+        image: gcr.io/my_gcr_project/gohelloworld:latest
         command:
         ports:
           - containerPort: 8080
