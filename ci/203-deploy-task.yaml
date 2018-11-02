@@ -10,12 +10,20 @@ spec:
       type: git
     - name: dockerimage
       type: image
-    # - name: testcluster
-    #   type: cluster    
+    - name: testcluster
+      type: cluster    
+    params:
+    - name: clusterName
+    - name: gcrProject
   buildSpec:
     steps:
     - name: deploy
-      image: nziada/gohelloworld
-      command: 
-      - kubectl
-      args: ["apply", "f", "service.yaml"]
+      image: gcr.io/<project>/gohelloworld
+      command: ['bash']
+      args:
+      - '-c'
+      - 'sed -i "s/my_gcr_project/$MY_GCR_PROJECT/g" /workspace/service.yaml
+        && kubectl --kubeconfig /workspace/${inputs.params.clusterName}/kubeconfig --context ${inputs.params.clusterName} apply -f /workspace/service.yaml'
+      env:
+      - name: MY_GCR_PROJECT
+        value: cf-elafros-dog

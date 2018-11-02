@@ -43,3 +43,6 @@ spec:
     - name: testcluster
       resourceRef:
         name: go-helloworld-test-cluster
+    params:
+    - name: clusterName
+      value: nader-knative-test 
