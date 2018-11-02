@@ -1,15 +1,29 @@
-apiVersion: serving.knative.dev/v1alpha1
-kind: Service
+apiVersion: apps/v1beta1
+kind: Deployment
 metadata:
   name: gohelloworld
-  namespace: default
+  labels: {app: gohelloworld}
 spec:
-  runLatest:
-    configuration:
-      revisionTemplate:
-        spec:
-          container:
-            image: gcr.io/<project>/gohelloworld
-            env:
-            - name: TARGET
-              value: "Go Sample v1"
+  replicas: 1
+  template:
+    metadata: {labels: {app: gohelloworld}}
+    spec:
+      containers:
+      - name: news
+        image: gcr.io/${MY_GCR_PROJECT}/gohelloworld:latest
+        command:
+        ports:
+          - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gohelllworld
+spec:
+  type: LoadBalancer
+  selector:
+    app: gohelloworld
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
