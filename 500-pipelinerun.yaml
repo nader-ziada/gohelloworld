@@ -6,5 +6,24 @@ metadata:
 spec:
   pipelineRef:
     name: gohelloworld-pipeline
-  triggerRef:
+  trigger:
     type: manual
+  resources:
+  - name: test
+    inputs:
+    - name: workspace
+      resourceRef:
+        name: go-helloworld-git
+    outputs:
+    - name: workspace
+      resourceRef:
+        name: go-helloworld-git
+  - name: build
+    inputs:
+    - name: workspace
+      resourceRef:
+        name: go-helloworld-git
+    outputs:
+    - name: workspace
+      resourceRef:
+        name: go-helloworld-git

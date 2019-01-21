@@ -8,17 +8,14 @@ spec:
     resources:
     - name: workspace
       type: git
-    - name: dockerimage
-      type: image
     - name: testcluster
       type: cluster    
     params:
     - name: clusterName
-    - name: gcrProject
   buildSpec:
     steps:
     - name: deploy
-      image: gcr.io/<project>/gohelloworld
+      image: gcr.io/cf-elafros-dog/gohelloworld
       command: ['bash']
       args:
       - '-c'

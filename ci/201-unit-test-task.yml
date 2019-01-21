@@ -8,10 +8,13 @@ spec:
     resources:
     - name: workspace
       type: git
-  buildSpec:
-    steps:
-    - name: run-tests
-      image: golang
-      command: 
-      - go
-      args: ["test", "./..."]
+  outputs:
+    resources:
+    - name: workspace
+      type: git      
+  steps:
+  - name: run-tests
+    image: golang
+    command: 
+    - go
+    args: ["test", "./..."]

@@ -2,47 +2,33 @@ apiVersion: pipeline.knative.dev/v1alpha1
 kind: Pipeline
 metadata:
   name: gohelloworld-pipeline
-  namespace: default
 spec:
   tasks:
   - name: test          
     taskRef:
       name: unit-test
-    inputSourceBindings:
-    - name: workspace 
-      resourceRef:
-        name: go-helloworld-git
   - name: build               
     taskRef:
       name: build-image
-    inputSourceBindings:
-    - name: workspace 
-      resourceRef:
-        name: go-helloworld-git
-      passedConstraints: [test]
-    outputSourceBindings:
-    - name: dockerimage
-      resourceRef:
-        name: go-helloworld-image
     params:
     - name: pathToDockerfile
       value: /workspace/Dockerfile
     - name: outputImage
-      value: gcr.io/<project>/gohelloworld  
-  - name: deploy
-    taskRef:
-      name: deploy-image
-    inputSourceBindings:
-    - name: workspace 
-      resourceRef:
-        name: go-helloworld-git    
-    - name: dockerimage
-      resourceRef:
-        name: go-helloworld-image
-      passedConstraints: [build-image]
-    - name: testcluster
-      resourceRef:
-        name: go-helloworld-test-cluster
-    params:
-    - name: clusterName
-      value: nader-knative-test 
+      value: gcr.io/cf-elafros-dog/gohelloworld  
+  # - name: deploy
+  #   taskRef:
+  #     name: deploy-image
+  #   inputSourceBindings:
+  #   - name: workspace 
+  #     resourceRef:
+  #       name: go-helloworld-git    
+  #   - name: dockerimage
+  #     resourceRef:
+  #       name: go-helloworld-image
+  #     # passedConstraints: [build-image]
+  #   - name: testcluster
+  #     resourceRef:
+  #       name: go-helloworld-test-cluster
+  #   params:
+  #   - name: clusterName
+  #     value: nader-knative-test 

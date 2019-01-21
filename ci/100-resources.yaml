@@ -3,7 +3,6 @@ apiVersion: pipeline.knative.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: go-helloworld-git
-  namespace: default
 spec:    
   type: git
   params:
@@ -21,7 +20,7 @@ spec:
   type: image
   params:
   - name: url
-    value: gcr.io/<project>/gohelloworld
+    value: gcr.io/cf-elafros-dog/gohelloworld
 ---    
 apiVersion: pipeline.knative.dev/v1alpha1
 kind: PipelineResource
@@ -31,9 +30,17 @@ metadata:
 spec:  
   type: cluster
   params:
+  - name: clusterName
+    value: nader-knative-test     
   - name: url
-    value: https://35.190.93.250:8443    
-  - name: cadata
-    value: 
-  - name: token
-    value: 
+    value: https://35.225.217.172:8443   
+  secrets:  
+  - fieldName: username
+    secretKey: username
+    secretName:  target-cluster-secrets
+  - fieldName: token
+    secretKey: token
+    secretName:  target-cluster-secrets
+  - fieldName: cadata
+    secretKey: cadata
+    secretName:  target-cluster-secrets    
